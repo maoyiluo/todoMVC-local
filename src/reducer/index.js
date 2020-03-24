@@ -22,7 +22,7 @@ function todos(state={todos:defaultTask}, action){
             break;
         case REMOVE_TODO:
         //in this case, task has an id
-            todoID = todoID.filter(id=>id !== action.todo.id);
+            todoID = todoID.filter(id=> id != action.todo.id);
             todos = todos.filter(todo=>todo.id !== action.todo.id);
             window.localStorage.removeItem(action.todo.id)
             break;

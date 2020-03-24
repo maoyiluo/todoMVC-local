@@ -8,9 +8,8 @@ function todos(state={todos:defaultTask}, action){
     if(!todoID) todoID = [];
     else if(todoID.length === 1) todoID = [todoID];
     else todoID = todoID.split(',');
-    if(!nextID) nextID = 0;
+    if(!nextID) nextID = 5;
     else nextID = Number.parseInt(nextID);
-    if(nextID > 0) todos = [];
     switch (action.type){
         case ADD_TODO: 
         //if this case, task won't have an id
@@ -45,6 +44,7 @@ function todos(state={todos:defaultTask}, action){
             break;
         case INIT_TODO:
         // initialize the state from localstorage
+            if(nextID > 5) todos = [];
             for(let index of todoID){
                 let newTodoArr = window.localStorage.getItem(index).split(",");
                 let newTodo = {task: newTodoArr[0], id:Number.parseInt(index), done: newTodoArr[1]==='true'};

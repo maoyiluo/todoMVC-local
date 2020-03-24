@@ -1,4 +1,4 @@
-安装dependency
+安装dependencies
 
 ### `npm install`
 

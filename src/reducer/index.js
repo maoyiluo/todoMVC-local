@@ -52,6 +52,7 @@ function todos(state={todos:defaultTask}, action){
             }
             break;
         default:
+            if(nextID > 5) todos = [];
             return state;
     }
     window.localStorage.setItem("nextID", nextID);

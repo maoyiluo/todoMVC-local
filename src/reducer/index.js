@@ -23,8 +23,8 @@ function todos(state={todos:defaultTask}, action){
             break;
         case REMOVE_TODO:
         //in this case, task has an id
-            todoID = todoID.filter(id=>id != action.todo.id);
-            todos = todos.filter(todo=>todo.id != action.todo.id);
+            todoID = todoID.filter(id=>id !== action.todo.id);
+            todos = todos.filter(todo=>todo.id !== action.todo.id);
             window.localStorage.removeItem(action.todo.id)
             break;
         case TOGGLE_TODO:
@@ -47,7 +47,7 @@ function todos(state={todos:defaultTask}, action){
         // initialize the state from localstorage
             for(let index of todoID){
                 let newTodoArr = window.localStorage.getItem(index).split(",");
-                let newTodo = {task: newTodoArr[0], id:Number.parseInt(index), done: newTodoArr[1]=='true'};
+                let newTodo = {task: newTodoArr[0], id:Number.parseInt(index), done: newTodoArr[1]==='true'};
                 todos.push(newTodo);
             }
             break;

@@ -1,6 +1,5 @@
 import { createStore } from 'redux'
 import todos from '../reducer'
-import defaultTask from '../defaultTask'
 
 const store = createStore(todos)
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './stylesheet/Task.css'
 
 function editTodo(todo, editTodo, id) {

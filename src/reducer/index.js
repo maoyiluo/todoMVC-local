@@ -4,15 +4,13 @@ import {ADD_TODO, TOGGLE_TODO, REMOVE_TODO, EDIT_TODO,INIT_TODO} from '../action
 function todos(state={todos:defaultTask}, action){
     let nextID = window.localStorage.getItem("nextID");
     let todoID = window.localStorage.getItem("todoID");
-    console.log(state.todos)
     let todos = (state.todos)?state.todos.slice(0):[];
-    console.log(state.todos)
-    console.log(todos)
     if(!todoID) todoID = [];
     else if(todoID.length === 1) todoID = [todoID];
     else todoID = todoID.split(',');
     if(!nextID) nextID = 0;
     else nextID = Number.parseInt(nextID);
+    if(nextID > 0) todos = [];
     switch (action.type){
         case ADD_TODO: 
         //if this case, task won't have an id
@@ -25,7 +23,6 @@ function todos(state={todos:defaultTask}, action){
             break;
         case REMOVE_TODO:
         //in this case, task has an id
-            console.log(action);
             todoID = todoID.filter(id=>id != action.todo.id);
             todos = todos.filter(todo=>todo.id != action.todo.id);
             window.localStorage.removeItem(action.todo.id)
@@ -48,7 +45,6 @@ function todos(state={todos:defaultTask}, action){
             break;
         case INIT_TODO:
         // initialize the state from localstorage
-            if(nextID > 0) todos = [];
             for(let index of todoID){
                 let newTodoArr = window.localStorage.getItem(index).split(",");
                 let newTodo = {task: newTodoArr[0], id:Number.parseInt(index), done: newTodoArr[1]=='true'};
@@ -56,9 +52,6 @@ function todos(state={todos:defaultTask}, action){
             }
             break;
         default:
-            console.log("returning ...")
-            console.log(action)
-            console.log(state)
             return state;
     }
     window.localStorage.setItem("nextID", nextID);
